@@ -26,7 +26,7 @@ pipeline {
         stage('Test Docker Image') {
             steps {
                 echo "🧪 Docker 컨테이너 테스트 실행..."
-                sh "sudo docker run --rm ${IMAGE_NAME}:${IMAGE_TAG} python3 manage.py check"
+                sh "docker run --rm ${IMAGE_NAME}:${IMAGE_TAG} python3 manage.py check"
             }
         }
 

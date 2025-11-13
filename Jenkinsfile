@@ -41,7 +41,7 @@ pipeline {
             steps {
                 echo "🚀 쿠버네티스에 배포 중..."
                 sh """
-                    export KUBECONFIG=${KUBE_CONFIG}
+                    export KUBECONFIG=/var/lib/jenkins/.kube/config
                     kubectl delete deployment django-deploy --ignore-not-found
                     kubectl apply -f k8s/deployment.yaml
                     kubectl apply -f k8s/service.yaml

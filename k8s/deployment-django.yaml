@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: django-k8s-app:latest
+          image: chlwjddn/django-k8s-app:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000

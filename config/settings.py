@@ -83,6 +83,11 @@ DATABASES = {
         'PASSWORD': 'qwer',
         'HOST': 'mysql',
         'PORT': '3306',
+        'OPTIONS': {
+            'ssl': {
+                'ca': ''
+            }
+        }
     }
 }
 

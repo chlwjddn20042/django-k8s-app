@@ -17,7 +17,7 @@ spec:
         - name: django
           image: chlwjddn/django-k8s-app:latest
           imagePullPolicy: IfNotPresent
+          command: ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
           ports:
             - containerPort: 8000
-          command: ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 

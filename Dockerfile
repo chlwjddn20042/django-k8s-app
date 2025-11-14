@@ -1,6 +1,7 @@
 # 베이스 이미지
 FROM python:3.11-slim
-
+# cache-bust
+RUN apt-get update && apt-get install -y gcc default-libmysqlclient-dev pkg-config && apt-get clean
 # 작업 디렉토리
 WORKDIR /app
 

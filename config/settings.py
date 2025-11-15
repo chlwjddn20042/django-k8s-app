@@ -84,10 +84,10 @@ DATABASES = {
         'HOST': 'mysql',
         'PORT': '3306',
         'OPTIONS': {
-            'ssl': {
-                'ca': ''
-            }
-        }
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+            'ssl_disabled': True,
+        },
     }
 }
 

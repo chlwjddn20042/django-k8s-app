@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "chlwjddn/django-k8s-app"
-        IMAGE_TAG = "latest"
+        IMAGE_TAG = "${BUILD_NUMBER}"
         KUBE_CONFIG = "/var/lib/jenkins/.kube/config"
     }
 
@@ -60,10 +60,7 @@ pipeline {
                 echo "🚀 쿠버네티스에 배포 중..."
                 sh """
                     export KUBECONFIG=${KUBE_CONFIG}
-                    kubectl delete deployment django-deploy --ignore-not-found
-                    kubectl apply -f k8s/namespace.yaml
-                    kubectl apply -f k8s/deployment-django.yaml
-                    kubectl apply -f k8s/service-django.yaml
+                    kubectl set image deployment/django-deploy django=${IMAGE_NAME}:${IMAGE_TAG} -n django-app
                 """
             }
         }
@@ -71,10 +68,10 @@ pipeline {
 
     post {
         success {
-            echo "🎉 배포 성공! Django 앱이 Kubernetes에 반영되었습니다."
+            echo "🎉 배포 성공!"
         }
         failure {
-            echo "❌ 빌드 또는 배포 실패 — Jenkins 콘솔 로그 확인 필요."
+            echo "❌ 빌드/배포 실패"
         }
     }
 }
